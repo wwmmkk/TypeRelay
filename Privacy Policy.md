@@ -1,79 +1,81 @@
 # TypeRelay Privacy Policy
 
-Last updated: May 25, 2026
+Last updated: November 8, 2026
 
-TypeRelay is a macOS menu bar utility that automatically switches the current keyboard input source based on the frontmost app. This policy explains what data TypeRelay handles and how it is used.
+TypeRelay is a macOS menu bar utility that switches keyboard input sources based on the frontmost app. This policy describes the data handled to provide input-source switching, iCloud sync, rule import and export, and Pro purchases.
 
-## Data Collection
+## 1. Keyboard Input and App Activity
 
-TypeRelay does not collect, transmit, sell, rent, or share personal data.
+TypeRelay does not read, record, or upload your typed text, passwords, secure input, or clipboard contents. It does not scan your documents, photos, messages, emails, or browsing history.
 
-TypeRelay does not collect:
+To match switching rules, TypeRelay uses standard macOS APIs to obtain the frontmost app's identifier and display name, as well as the enabled and currently selected input sources. This information is used to perform switching on your Mac. TypeRelay does not create an app-usage history for behavioral analytics or advertising tracking, or upload live frontmost app activity.
 
-- Keystrokes or typed text
-- Passwords or secure input
-- Clipboard contents
-- Documents, files, photos, messages, emails, or browser history
-- Analytics, advertising identifiers, or tracking data
-- Location data
+App names, app identifiers, and input-source information contained in saved rules may leave your Mac through the optional iCloud sync or manual export features described below.
 
-## Data Stored Locally
+## 2. Data Stored on Your Mac
 
-TypeRelay stores a small amount of app configuration locally on your Mac, using macOS local storage. This may include:
+By default, TypeRelay stores the following information locally:
 
-- Rules that map an app bundle identifier to a keyboard input source
-- The default keyboard input source preference
-- Whether the small switching notification is enabled
-- The notification display duration
-- A local daily switch count shown inside the app
-- Whether the app has been launched before, so the settings window can be shown on first launch
+- App switching rules, including app identifiers, app names, rule identifiers, and assigned input sources;
+- Preferences such as the default input source, interface language, menu bar icon, switching notifications, and launch-at-login setting;
+- The daily switch count displayed in the app and first-launch status;
+- Local usage counters, the last rating-prompt request time, and the app version, used to control how often the system rating prompt is requested;
+- Sync state needed to merge rule changes, process deletions, and continue interrupted synchronization.
 
-This information stays on your device. TypeRelay does not upload it to any server.
+Daily switch counts, rating-prompt counters, and the interface preferences above are not uploaded as part of rule sync. TypeRelay does not use advertising or behavioral tracking SDKs, and we do not sell or rent your personal information.
 
-## Frontmost App Information
+## 3. Optional iCloud Sync
 
-To decide when to switch input sources, TypeRelay observes the currently active macOS application and reads its bundle identifier and display name through standard macOS APIs. This information is used only on your Mac to match your local switching rules.
+TypeRelay Pro users can enable iCloud sync in Settings. Sync is off by default. Core input-source switching works without enabling sync.
 
-TypeRelay does not create a history of app usage for analytics or tracking, and it does not send frontmost app information outside your device.
+When enabled, TypeRelay uses Apple's iCloud service to sync the following between Macs signed into the same Apple Account:
 
-## Keyboard Input Sources
+- Saved app rules, including app names, app identifiers, and input-source settings;
+- The default input-source setting;
+- Version information and randomly generated device identifiers needed to handle changes, deletions, and sync conflicts.
 
-TypeRelay reads the list of enabled keyboard input sources and the currently selected input source through macOS input source APIs. It uses this information to display available choices and switch to the input source selected by your local rules.
+These configurations are not uploaded to a developer-operated server. The developer cannot access the rule configurations in your personal iCloud account through a backend. Apple handles iCloud service data under its terms and [Privacy Policy](https://www.apple.com/legal/privacy/).
 
-TypeRelay does not read what you type.
+Turning sync off stops TypeRelay from initiating synchronization of new rule changes and preserves local rules. It does not automatically delete data already stored in iCloud. While sync is on, rule changes and deletions may propagate to other devices. Detecting an Apple Account change turns sync off automatically. The system marker used to detect account changes stays on your Mac; it is not included in exported rule files or uploaded as part of rule sync.
 
-## Network Access
+Sync keeps complete current configurations and a limited amount of deletion history. A device that has not synced for a long time first adopts the current synced configuration, rather than directly merging outdated rules. Use Export Rules in Settings if you want to keep a separate copy.
 
-TypeRelay does not use a server and does not require network access for its core functionality. The app may open your default email client if you choose the feedback option.
+While Pro access is unresolved, TypeRelay pauses initiating rule synchronization. If Pro is confirmed to be unavailable, sync turns off and local rules remain usable. Restoring Pro does not automatically re-enable a sync switch that was turned off.
 
-## Permissions
+## 4. Rule Import and Export
 
-TypeRelay is sandboxed. It uses standard macOS APIs to:
+Export creates a JSON file at a location you choose. It contains rule identifiers, app identifiers and names, input-source settings, the default input source, and file-format information. It does not contain your Apple Account state marker, payment credentials, daily switch counts, or rating-prompt counters.
 
-- Observe app activation events
-- Read available keyboard input sources
-- Select a keyboard input source
-- Register or unregister itself as a login item when you enable or disable "Launch at Login"
+Import reads only the file you select to add or replace rules. It does not scan other files.
 
-TypeRelay does not request Accessibility permission to log keystrokes or control other apps.
+Exported files may reveal which apps you have configured rules for. Choose their storage location and recipients accordingly. If you save a file to cloud storage or share it with someone, that provider or recipient handles the file independently.
 
-## Third Parties
+## 5. Pro Purchases and Purchase Statistics
 
-TypeRelay does not integrate third-party analytics, advertising SDKs, or tracking services.
+Apple processes Pro purchases and payments through the App Store. TypeRelay receives entitlement information through StoreKit to unlock Pro features. The developer does not receive your payment card number or similar payment details.
 
-If you send feedback by email, your email will be handled by your email provider and the recipient's email provider according to their own privacy policies.
+We use RevenueCat to receive purchase-status notifications from Apple and view purchase and sales statistics. These records may include product and transaction identifiers, transaction times, purchase or refund status, and anonymous identifiers used to associate purchase records. We do not associate these records with names, email addresses, phone numbers, or real-name accounts, or use them for advertising tracking. Rule configurations, typed text, and live frontmost app activity are not sent to RevenueCat through this integration. See the [RevenueCat Privacy Policy](https://www.revenuecat.com/privacy).
 
-## Children's Privacy
+## 6. Permissions and External Services
 
-TypeRelay is a general-purpose utility and does not knowingly collect information from children.
+TypeRelay runs in the macOS sandbox. It uses system APIs to observe app activation events, read and select input sources, and register or unregister itself as a login item according to your choice. You authorize rule-file access through the system file picker. TypeRelay does not request Accessibility permission to monitor keystrokes or control other apps.
 
-## Changes to This Policy
+If you choose to send feedback, TypeRelay opens your email client. The developer and relevant email providers process the email address, message, and attachments you choose to send so we can respond and resolve your issue. Please do not include passwords or unnecessary sensitive information.
 
-This privacy policy may be updated from time to time. If changes are made, the updated policy will be posted at the same location with a new "Last updated" date.
+If you choose to rate the app or the system displays a rating prompt, Apple handles ratings and reviews. If you open the author's Xiaohongshu or X page, or another external link, your browser and the destination service handle that visit under their own privacy policies.
 
-## Contact
+## 7. Managing Your Data
 
-If you have questions about this privacy policy, contact:
+You can edit or delete rules, turn off iCloud sync, and manually export rules you want to keep. Turning sync off, clearing local settings, or uninstalling the app does not itself delete data already stored in iCloud. Files you have saved or shared are not automatically deleted by the app either.
 
-Micky Wang  
-Micky.Wang@outlook.com
+Local settings and sync state are stored on your device. iCloud data and purchase-related records are also subject to the data-management practices of Apple and the relevant service providers. Contact the developer below with questions or privacy-related requests about data handled by TypeRelay.
+
+## 8. Children, Policy Changes, and Contact
+
+TypeRelay is a general-purpose utility, is not directed at children, and does not knowingly collect children's personal information.
+
+When features or data practices change, we will publish an updated policy at the same location and revise the Last updated date.
+
+Developer: Micky Wang
+
+Email: [Micky.Wang@outlook.com](mailto:Micky.Wang@outlook.com)
